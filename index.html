@@ -13,64 +13,57 @@
             color: var(--text); 
             font-family: 'Inter', -apple-system, sans-serif; 
             letter-spacing: -0.02em; 
-            overflow-x: hidden; /* Prevents huge text from breaking the screen width */
+            overflow-x: hidden;
         }
         
-        /* Navigation */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; position: fixed; width: 100%; top: 0; z-index: 9999; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
         .logo { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; color: white; }
         .nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: #fff; }
 
-        /* HUGE HERO SECTION */
         .hero { 
             min-height: 90vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
-            padding: 120px 5% 60px 5%; /* Top padding for the nav */
+            padding: 120px 5% 60px 5%;
         }
         .hero h1 { 
-            font-size: clamp(4rem, 18vw, 12rem); /* THIS KEEPS IT HUGE */
+            font-size: clamp(4rem, 18vw, 12rem); 
             font-weight: 900; 
             line-height: 0.8; 
             text-transform: uppercase; 
             margin-bottom: 20px;
             letter-spacing: -0.04em;
         }
-        .hero p { font-size: 1.1rem; color: #888; max-width: 500px; margin-bottom: 40px; line-height: 1.4; }
-        .btn { display: inline-block; padding: 18px 45px; background: white; color: black; text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; transition: 0.3s; width: fit-content; }
-        .btn:hover { background: #ccc; transform: translateY(-2px); }
+        .hero p { font-size: 1.1rem; color: #888; max-width: 500px; margin-bottom: 40px; }
+        .btn { display: inline-block; padding: 18px 45px; background: white; color: black; text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; transition: 0.3s; }
 
-        /* 4-COLUMN CATALOG GRID */
         .section { padding: 80px 5%; background: var(--bg); position: relative; }
         .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-        .section-header h2 { font-size: 1.8rem; text-transform: uppercase; }
         
+        /* 4-COLUMN GRID FIX */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(4, 1fr); /* FORCES 4 COLUMNS */
+            grid-template-columns: repeat(4, 1fr); 
             gap: 20px; 
         }
 
-        /* Mobile Fix for Grid */
         @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 
         .release-link { text-decoration: none; color: inherit; display: block; }
-        .card { background: var(--surface); border: 1px solid var(--border); padding: 15px; transition: 0.3s; height: 100%; }
+        .card { background: var(--surface); border: 1px solid var(--border); padding: 15px; transition: 0.3s; }
         .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; filter: grayscale(100%); margin-bottom: 15px; transition: 0.5s; display: block; }
-        
         .release-link:hover .card { border-color: #fff; transform: translateY(-5px); }
         .release-link:hover img { filter: grayscale(0%); }
         
         .card h3 { font-size: 0.9rem; margin-bottom: 5px; text-transform: uppercase; }
-        .card p { color: #666; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        .card p { color: #666; font-size: 0.75rem; text-transform: uppercase; }
 
         footer { padding: 60px 5%; text-align: center; color: #444; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="/" class="logo">NOFACE</a>
         <div class="nav-links">
@@ -80,19 +73,13 @@
             <a href="mailto:demos@nofacerecords.com">Demos</a>
         </div>
     </nav>
-
     <header class="hero">
         <h1>NOFACE<br>RECORDS.</h1>
         <p>A global imprint for elite dance music. Pushing the boundaries of the underground.</p>
         <a href="/academy" class="btn">Enter Academy</a>
     </header>
-
     <section class="section" id="catalog">
-        <div class="section-header">
-            <h2>Latest Catalog</h2>
-            <span>2026 Season</span>
-        </div>
-        
+        <div class="section-header"><h2>Latest Catalog</h2><span>2026 Season</span></div>
         <div class="grid">
             <a href="https://fanlink.tv/NFR487" target="_blank" class="release-link">
                 <div class="card">
@@ -101,16 +88,11 @@
                     <p>Ibiza 2000</p>
                 </div>
             </a>
-
             <div class="card" style="opacity: 0.1;"><div style="aspect-ratio: 1/1; background: #222; margin-bottom: 15px;"></div><h3>NFXXX</h3><p>Coming Soon</p></div>
             <div class="card" style="opacity: 0.1;"><div style="aspect-ratio: 1/1; background: #222; margin-bottom: 15px;"></div><h3>NFXXX</h3><p>Coming Soon</p></div>
             <div class="card" style="opacity: 0.1;"><div style="aspect-ratio: 1/1; background: #222; margin-bottom: 15px;"></div><h3>NFXXX</h3><p>Coming Soon</p></div>
         </div>
     </section>
-
-    <footer>
-        &copy; 2026 NOFACE RECORDS & ACADEMY // LONDON - TOKYO - NEW YORK
-    </footer>
-
+    <footer>&copy; 2026 NOFACE RECORDS & ACADEMY</footer>
 </body>
 </html>
