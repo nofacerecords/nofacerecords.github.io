@@ -7,13 +7,12 @@
     <style>
         :root { --bg: #000; --text: #fff; --border: #222; }
         body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-        
         nav { padding: 20px 5%; border-bottom: 1px solid var(--border); background: #000; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; }
         .logo { font-weight: 800; letter-spacing: 0.3em; text-decoration: none; color: #fff; font-size: 14px; text-transform: uppercase; }
         
         .event-hero { 
             position: relative; 
-            height: 70vh; 
+            height: 60vh; 
             width: 100%; 
             background: #050505;
             display: flex; 
@@ -28,28 +27,26 @@
         
         .hero-content { position: relative; z-index: 10; }
         .hero-content p { color: #888; letter-spacing: 5px; font-size: 10px; margin-bottom: 10px; text-transform: uppercase; }
-        .hero-content h1 { font-size: clamp(3.5rem, 12vw, 8rem); font-weight: 900; margin: 0; line-height: 0.8; text-transform: uppercase; letter-spacing: -2px; }
+        .hero-content h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; margin: 0; line-height: 0.8; text-transform: uppercase; }
 
         .event-tabs { padding: 20px 5%; display: flex; gap: 10px; background: #000; border-bottom: 1px solid var(--border); position: sticky; top: 55px; z-index: 900; }
-        .tab { padding: 12px 24px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #555; transition: 0.3s; }
+        .tab { padding: 12px 24px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #555; }
         .tab.active { background: #fff; color: #000; border-color: #fff; font-weight: bold; }
 
-        .gallery-grid { 
+        #gallery-container { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 5px; 
-            padding: 5px; 
-            background: #000;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 10px; 
+            padding: 20px 5%; 
         }
-        .gallery-item { width: 100%; aspect-ratio: 1/1; object-fit: cover; cursor: pointer; transition: 0.3s; filter: grayscale(20%); }
-        .gallery-item:hover { filter: grayscale(0%) brightness(1.1); }
+        .gallery-item { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #111; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
     <nav><a href="/" class="logo">NOFACE</a></nav>
 
-    <div id="hero-bg" class="event-hero" style="background-image: url('https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai-cover.jpg');">
+    <div id="hero-bg" class="event-hero">
         <div class="hero-content">
             <p id="event-date">JULY 2024</p>
             <h1 id="event-title">DUBAI</h1>
@@ -57,26 +54,27 @@
     </div>
 
     <div class="event-tabs">
-        <div id="btn-dubai" class="tab active" onclick="loadDubai()">Dubai</div>
-        <div id="btn-london" class="tab">London</div>
+        <div id="btn-dubai" class="tab active">Dubai</div>
+        <div class="tab" style="opacity: 0.3;">London</div>
     </div>
 
-    <div id="gallery-container" class="gallery-grid">
+    <div id="gallery-container">
         </div>
 
     <script>
-        // Manually adding a few images to ensure they show up NO MATTER WHAT
-        const dubaiImages = [
-            'https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai-cover.jpg',
-            // Add other image URLs here if needed
-        ];
+        const cloudName = "dlrqcpsgi";
+        const tag = "dubai2024";
 
-        function loadDubai() {
+        async function fetchImages() {
             const container = document.getElementById('gallery-container');
-            container.innerHTML = dubaiImages.map(img => `<img src="${img}" class="gallery-item">`).join('');
-        }
-
-        window.onload = loadDubai;
-    </script>
-</body>
-</html>
+            const hero = document.getElementById('hero-bg');
+            
+            try {
+                // Fetching the list directly from Cloudinary
+                const response = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`);
+                const data = await response.json();
+                
+                if(data.resources && data.resources.length > 0) {
+                    // Set the first image as the cover
+                    const firstImg = `https://res.cloudinary.com/${cloudName}/image/upload/v${data.resources[0].version}/${data.resources[0].public_id}.jpg`;
+                    hero.style.backgroundImage =
