@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIM | Industry Meetups</title>
+    <title>MIM | Event Media Manager</title>
     <script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"></script>
     <style>
         :root { --bg: #000; --text: #fff; --border: #333; }
         body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
-        
-        nav { padding: 25px 5%; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
-        .logo { font-weight: 800; letter-spacing: 0.3em; text-decoration: none; color: #fff; }
-
-        .admin-header { padding: 60px 5%; background: #0a0a0a; border-bottom: 1px solid var(--border); }
-        h1 { font-size: 2rem; text-transform: uppercase; }
-        
-        /* Event Tabs */
-        .event-tabs { padding: 20px 5%; display: flex; gap: 20px; }
-        .tab { padding: 10px 20px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 12px; }
-        .tab:hover { background: #fff; color: #000; }
-
-        #gallery-container { padding: 20px 5%; min-height: 500px; }
+        nav { padding: 25px 5%; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; background: #000; position: sticky; top: 0; z-index: 100; }
+        .logo { font-weight: 800; letter-spacing: 0.3em; text-decoration: none; color: #fff; text-transform: uppercase; }
+        .admin-header { padding: 60px 5% 20px; border-bottom: 1px solid var(--border); }
+        h1 { font-size: 2.5rem; text-transform: uppercase; font-weight: 900; margin: 0; }
+        .event-nav { padding: 20px 5%; display: flex; gap: 15px; overflow-x: auto; border-bottom: 1px solid var(--border); background: #050505; }
+        .event-btn { padding: 10px 20px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; transition: 0.3s; color: #666; }
+        .event-btn.active { background: #fff; color: #000; border-color: #fff; }
+        #gallery-container { padding: 20px 5%; min-height: 800px; width: 100%; }
+        footer { padding: 40px 5%; text-align: center; color: #444; font-size: 10px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
@@ -28,32 +24,42 @@
     <nav><a href="/" class="logo">NOFACE</a></nav>
 
     <div class="admin-header">
-        <h1>Event Media Manager</h1>
-        <p style="color:#666; font-size: 12px;">Select an event below to view/manage photos.</p>
+        <h1>EVENT MEDIA MANAGER</h1>
+        <p style="color:#666; font-size: 12px; margin-top: 10px; text-transform: uppercase; letter-spacing: 2px;">Manage galleries via Cloudinary tags</p>
     </div>
 
-    <div class="event-tabs">
-        <div class="tab" onclick="loadGallery('dubai2024')">Dubai July 2024</div>
-        <div class="tab" onclick="loadGallery('future-event')">Next Event</div>
+    <div class="event-nav">
+        <div id="dubai-btn" class="event-btn active" onclick="loadGallery('dubai2024', this)">Dubai July 2024</div>
+        <div class="event-btn" onclick="loadGallery('london2024', this)">London 2024</div>
     </div>
 
     <div id="gallery-container"></div>
 
+    <footer>&copy; 2026 NOFACE RECORDS</footer>
+
     <script type="text/javascript">  
-        function loadGallery(eventTag) {
-            document.getElementById('gallery-container').innerHTML = ""; // Clear current
+        function loadGallery(tag, element) {
+            // UI Toggle
+            document.querySelectorAll('.event-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+
+            // Clear the old gallery
+            document.getElementById('gallery-container').innerHTML = "";
+
+            // Start the connection to Cloudinary
             const myGallery = cloudinary.galleryWidget({ 
                 container: "#gallery-container", 
-                cloudName: "YOUR_NAME", // You'll get this in 1 minute
-                mediaAssets: [{ tag: eventTag }], 
+                cloudName: "dlrqcpsgi", 
+                mediaAssets: [{ tag: tag, mediaType: "image" }], 
                 displayProps: { mode: "masonry", columns: 4, spacing: 10 },
-                zoomProps: { type: "popup" }
+                zoomProps: { type: "popup", theme: "dark" },
+                aspectRatio: "1:1"
             }); 
             myGallery.render(); 
         }
         
-        // Load Dubai by default
-        loadGallery('dubai2024');
+        // When the page opens, automatically load Dubai photos
+        window.onload = () => loadGallery('dubai2024', document.getElementById('dubai-btn'));
     </script> 
 </body>
 </html>
