@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoFace Records | Official</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --surface: #0a0a0a;
+            --text: #ffffff;
+            --border: #333333;
+            --accent: #ffffff; /* Pure white for that sharp look */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Elite Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: #888;
+            text-decoration: none;
+            margin-left: 40px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: 0.4s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero - Minimalist & Large */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #888;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        /* Button - The Elite Look */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            background: #ccc;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px;
+            transition: border 0.3s;
+        }
+
+        .card:hover {
+            border-color: #666;
+        }
+
+        .card img {
+            width: 100%;
+            filter: grayscale(100%); /* Keeps the aesthetic consistent */
+            margin-bottom: 20px;
+            transition: 0.5s;
+        }
+
+        .card:hover img {
+            filter: grayscale(0%);
+        }
+
+        footer {
+            padding: 60px 5%;
+            border-top: 1px solid var(--border);
+            color: #444;
+            text-align: center;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">NOFACE</div>
+        <div class="nav-links">
+            <a href="/">Label</a>
+            <a href="/academy">Academy</a>
+            <a href="mailto:demos@nofacerecords.com">Demos</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>NOFACE<br>RECORDS.</h1>
+        <p>A global imprint for elite dance music. Pushing the boundaries of the underground.</p>
+        <a href="/academy" class="btn">Enter Academy</a>
+    </header>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Latest Catalog</h2>
+            <span>2026 Season</span>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800" alt="Release">
+                <h3>NF001</h3>
+                <p style="color:#888">Artist Name - Track Title</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="Release">
+                <h3>NF002</h3>
+                <p style="color:#888">Artist Name - Track Title</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 NOFACE RECORDS & ACADEMY // LONDON - TOKYO - NEW YORK
+    </footer>
+
+</body>
+</html>
