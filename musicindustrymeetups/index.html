@@ -3,63 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIM | Events</title>
+    <title>MIM | Industry Meetups</title>
+    <script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"></script>
     <style>
-        :root { --bg: #000000; --text: #ffffff; --border: #333333; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; letter-spacing: -0.02em; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-        .logo { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; color: white; }
-        .nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.75rem; text-transform: uppercase; }
+        :root { --bg: #000; --text: #fff; --border: #333; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
+        
+        nav { padding: 25px 5%; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .logo { font-weight: 800; letter-spacing: 0.3em; text-decoration: none; color: #fff; }
 
-        .hero { height: 40vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; margin-top: 80px; }
-        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; }
+        .admin-header { padding: 60px 5%; background: #0a0a0a; border-bottom: 1px solid var(--border); }
+        h1 { font-size: 2rem; text-transform: uppercase; }
+        
+        /* Event Tabs */
+        .event-tabs { padding: 20px 5%; display: flex; gap: 20px; }
+        .tab { padding: 10px 20px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 12px; }
+        .tab:hover { background: #fff; color: #000; }
 
-        .section { padding: 40px 5%; }
-        .event-card { 
-            width: 100%;
-            max-width: 600px; /* Tighter for elite feel */
-            border: 1px solid var(--border);
-            text-decoration: none;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-        .event-card:hover { border-color: #fff; transform: translateY(-5px); }
-        .event-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: grayscale(100%); transition: 0.5s; background: #111; }
-        .event-card:hover img { filter: grayscale(0%); }
-        .event-info { padding: 20px; background: #050505; }
-        .event-info h3 { text-transform: uppercase; font-size: 1.1rem; margin-bottom: 5px; }
-        .event-info p { color: #666; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        footer { padding: 60px 5%; text-align: center; color: #444; font-size: 0.6rem; text-transform: uppercase; border-top: 1px solid var(--border); }
+        #gallery-container { padding: 20px 5%; min-height: 500px; }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/" class="logo">NOFACE</a>
-        <div class="nav-links">
-            <a href="/">Label</a>
-            <a href="/academy">Academy</a>
-            <a href="/musicindustrymeetups">MIM</a>
-            <a href="mailto:demos@nofacerecords.com">Demos</a>
-        </div>
-    </nav>
 
-    <header class="hero">
-        <h1>OUR EVENTS.</h1>
-    </header>
+    <nav><a href="/" class="logo">NOFACE</a></nav>
 
-    <section class="section">
-        <a href="./dubai-july-2024/" class="event-card">
-            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" alt="Dubai">
-            <div class="event-info">
-                <h3>Hutong, Dubai</h3>
-                <p>July 2024 // View Gallery</p>
-            </div>
-        </a>
-    </section>
+    <div class="admin-header">
+        <h1>Event Media Manager</h1>
+        <p style="color:#666; font-size: 12px;">Select an event below to view/manage photos.</p>
+    </div>
 
-    <footer>&copy; 2026 NOFACE RECORDS</footer>
+    <div class="event-tabs">
+        <div class="tab" onclick="loadGallery('dubai2024')">Dubai July 2024</div>
+        <div class="tab" onclick="loadGallery('future-event')">Next Event</div>
+    </div>
+
+    <div id="gallery-container"></div>
+
+    <script type="text/javascript">  
+        function loadGallery(eventTag) {
+            document.getElementById('gallery-container').innerHTML = ""; // Clear current
+            const myGallery = cloudinary.galleryWidget({ 
+                container: "#gallery-container", 
+                cloudName: "YOUR_NAME", // You'll get this in 1 minute
+                mediaAssets: [{ tag: eventTag }], 
+                displayProps: { mode: "masonry", columns: 4, spacing: 10 },
+                zoomProps: { type: "popup" }
+            }); 
+            myGallery.render(); 
+        }
+        
+        // Load Dubai by default
+        loadGallery('dubai2024');
+    </script> 
 </body>
 </html>
