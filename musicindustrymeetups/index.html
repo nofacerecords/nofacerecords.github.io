@@ -7,23 +7,16 @@
     <script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"></script>
     <style>
         :root { --bg: #000; --text: #fff; --border: #222; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-        
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
         nav { padding: 20px 5%; border-bottom: 1px solid var(--border); background: #000; display: flex; align-items: center; }
         .logo { font-weight: 800; letter-spacing: 0.3em; text-decoration: none; color: #fff; font-size: 14px; text-transform: uppercase; }
-        
-        .hero { padding: 100px 5% 60px; border-bottom: 1px solid var(--border); background: linear-gradient(to bottom, #050505, #000); }
+        .hero { padding: 100px 5% 60px; border-bottom: 1px solid var(--border); background: #050505; }
         .hero p { color: #666; letter-spacing: 5px; font-size: 10px; margin-bottom: 15px; text-transform: uppercase; }
-        .hero h1 { font-size: clamp(3.5rem, 12vw, 8rem); font-weight: 900; margin: 0; line-height: 0.8; text-transform: uppercase; letter-spacing: -2px; }
-
+        .hero h1 { font-size: clamp(3.5rem, 12vw, 8rem); font-weight: 900; margin: 0; line-height: 0.8; text-transform: uppercase; }
         .event-tabs { padding: 20px 5%; display: flex; gap: 10px; background: #000; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
-        .tab { padding: 12px 24px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; transition: 0.3s; color: #555; }
+        .tab { padding: 12px 24px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #555; transition: 0.3s; }
         .tab.active { background: #fff; color: #000; border-color: #fff; font-weight: bold; }
-        .tab:hover:not(.active) { border-color: #555; color: #fff; }
-
-        #gallery-container { padding: 40px 5%; min-height: 100vh; width: 100%; box-sizing: border-box; }
-        
-        footer { padding: 80px 5%; text-align: center; color: #222; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; border-top: 1px solid var(--border); }
+        #gallery-container { padding: 40px 5%; min-height: 100vh; }
     </style>
 </head>
 <body>
@@ -42,19 +35,29 @@
 
     <div id="gallery-container"></div>
 
-    <footer>&copy; 2026 NOFACE RECORDS</footer>
-
     <script type="text/javascript">  
         function updateView(title, date, tag, element) {
-            // 1. Update Hero Text
             document.getElementById('event-title').innerText = title;
             document.getElementById('event-date').innerText = date;
-            
-            // 2. Update Tab Styling
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             element.classList.add('active');
 
-            // 3. Clear and Reload Gallery
             document.getElementById('gallery-container').innerHTML = "";
             
-            const myGallery = cloudinary.galleryWidget({
+            const myGallery = cloudinary.galleryWidget({ 
+                container: "#gallery-container", 
+                cloudName: "dlrqcpsgi", 
+                mediaAssets: [{ tag: tag }],
+                // CONNECTING TO YOUR NEW UNSIGNED PRESET
+                uploadPreset: "gallery", 
+                displayProps: { mode: "masonry", columns: 4, spacing: 15 },
+                zoomProps: { type: "popup", theme: "dark" },
+                aspectRatio: "1:1"
+            }); 
+            myGallery.render(); 
+        }
+        
+        window.onload = () => updateView('DUBAI', 'JULY 2024', 'dubai2024', document.getElementById('btn-dubai'));
+    </script> 
+</body>
+</html>
