@@ -10,9 +10,10 @@
         nav { padding: 20px 5%; border-bottom: 1px solid var(--border); background: #000; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; }
         .logo { font-weight: 800; letter-spacing: 0.3em; text-decoration: none; color: #fff; font-size: 14px; text-transform: uppercase; }
         
+        /* HERO SECTION WITH THE DUBAI COVER */
         .event-hero { 
             position: relative; 
-            height: 60vh; 
+            height: 70vh; 
             width: 100%; 
             background: #050505;
             display: flex; 
@@ -22,24 +23,28 @@
             box-sizing: border-box;
             background-size: cover;
             background-position: center;
+            /* Using a direct link for the cover */
+            background-image: url('https://res.cloudinary.com/dlrqcpsgi/image/upload/v1710780000/dubai-cover.jpg');
         }
-        .event-hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,1) 10%, transparent 90%); }
+        .event-hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 100%); }
         
         .hero-content { position: relative; z-index: 10; }
         .hero-content p { color: #888; letter-spacing: 5px; font-size: 10px; margin-bottom: 10px; text-transform: uppercase; }
-        .hero-content h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; margin: 0; line-height: 0.8; text-transform: uppercase; }
+        .hero-content h1 { font-size: clamp(3.5rem, 12vw, 8rem); font-weight: 900; margin: 0; line-height: 0.8; text-transform: uppercase; letter-spacing: -2px; }
 
         .event-tabs { padding: 20px 5%; display: flex; gap: 10px; background: #000; border-bottom: 1px solid var(--border); position: sticky; top: 55px; z-index: 900; }
         .tab { padding: 12px 24px; border: 1px solid var(--border); cursor: pointer; text-transform: uppercase; font-size: 10px; letter-spacing: 2px; color: #555; }
         .tab.active { background: #fff; color: #000; border-color: #fff; font-weight: bold; }
 
-        #gallery-container { 
+        .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-            gap: 10px; 
-            padding: 20px 5%; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 5px; 
+            padding: 5px; 
+            background: #000;
         }
-        .gallery-item { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #111; border: 1px solid #222; }
+        .gallery-item { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #111; transition: 0.3s; cursor: pointer; }
+        .gallery-item:hover { filter: brightness(1.2); }
     </style>
 </head>
 <body>
@@ -55,26 +60,19 @@
 
     <div class="event-tabs">
         <div id="btn-dubai" class="tab active">Dubai</div>
-        <div class="tab" style="opacity: 0.3;">London</div>
+        <div class="tab" style="opacity: 0.2;">London</div>
     </div>
 
-    <div id="gallery-container">
-        </div>
+    <div id="gallery-container" class="gallery-grid">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/1.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/2.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/3.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/4.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/5.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/6.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/7.jpg" class="gallery-item">
+        <img src="https://res.cloudinary.com/dlrqcpsgi/image/upload/v1/dubai2024/8.jpg" class="gallery-item">
+    </div>
 
-    <script>
-        const cloudName = "dlrqcpsgi";
-        const tag = "dubai2024";
-
-        async function fetchImages() {
-            const container = document.getElementById('gallery-container');
-            const hero = document.getElementById('hero-bg');
-            
-            try {
-                // Fetching the list directly from Cloudinary
-                const response = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/${tag}.json`);
-                const data = await response.json();
-                
-                if(data.resources && data.resources.length > 0) {
-                    // Set the first image as the cover
-                    const firstImg = `https://res.cloudinary.com/${cloudName}/image/upload/v${data.resources[0].version}/${data.resources[0].public_id}.jpg`;
-                    hero.style.backgroundImage =
+</body>
+</html>
