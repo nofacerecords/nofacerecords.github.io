@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoFace Records | Official</title>
+    <title>NOFACE RECORDS | Official</title>
     <style>
         :root {
             --bg: #000000;
             --surface: #0a0a0a;
             --text: #ffffff;
             --border: #333333;
-            --accent: #ffffff; /* Pure white for that sharp look */
+            --accent: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,9 +20,10 @@
             color: var(--text);
             font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             letter-spacing: -0.02em;
+            overflow-x: hidden;
         }
 
-        /* Elite Navigation */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -42,6 +43,8 @@
             font-weight: 800;
             letter-spacing: 0.3em;
             text-transform: uppercase;
+            text-decoration: none;
+            color: white;
         }
 
         .nav-links a {
@@ -58,7 +61,7 @@
             color: var(--accent);
         }
 
-        /* Hero - Minimalist & Large */
+        /* Hero */
         .hero {
             height: 100vh;
             display: flex;
@@ -83,7 +86,6 @@
             margin-bottom: 40px;
         }
 
-        /* Button - The Elite Look */
         .btn {
             display: inline-block;
             padding: 15px 40px;
@@ -103,7 +105,7 @@
             transform: translateY(-2px);
         }
 
-        /* Section Styling */
+        /* Catalog Section */
         .section {
             padding: 100px 5%;
         }
@@ -122,33 +124,56 @@
             text-transform: uppercase;
         }
 
-        /* Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
 
+        /* Release Card Styling */
+        .release-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 20px;
-            transition: border 0.3s;
-        }
-
-        .card:hover {
-            border-color: #666;
+            transition: all 0.3s ease;
         }
 
         .card img {
             width: 100%;
-            filter: grayscale(100%); /* Keeps the aesthetic consistent */
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            filter: grayscale(100%);
             margin-bottom: 20px;
-            transition: 0.5s;
+            transition: 0.5s ease;
+            display: block;
         }
 
-        .card:hover img {
+        .release-link:hover .card {
+            border-color: #ffffff;
+            transform: translateY(-5px);
+        }
+
+        .release-link:hover img {
             filter: grayscale(0%);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         footer {
@@ -165,7 +190,7 @@
 <body>
 
     <nav>
-        <div class="logo">NOFACE</div>
+        <a href="/" class="logo">NOFACE</a>
         <div class="nav-links">
             <a href="/">Label</a>
             <a href="/academy">Academy</a>
@@ -179,22 +204,28 @@
         <a href="/academy" class="btn">Enter Academy</a>
     </header>
 
-    <section class="section">
+    <section class="section" id="catalog">
         <div class="section-header">
             <h2>Latest Catalog</h2>
             <span>2026 Season</span>
         </div>
+        
         <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=800" alt="Release">
-                <h3>NF001</h3>
-                <p style="color:#888">Artist Name - Track Title</p>
+            
+            <a href="https://fanlink.tv/NFR487" target="_blank" class="release-link">
+                <div class="card">
+                    <img src="https://www.dropbox.com/scl/fi/5b6nb5vv5c6nf5y7xhlan/NFR487-IBIZA-2000.jpg?rlkey=6fon6yhip84uho2ozpli09czw&st=6ab48cnp&raw=1" alt="NFR487 Ibiza 2000">
+                    <h3>NFR487</h3>
+                    <p>Ibiza 2000</p>
+                </div>
+            </a>
+
+            <div class="card" style="opacity: 0.2; border-style: dashed;">
+                <img src="https://via.placeholder.com/800/000/333?text=UPCOMING" alt="Upcoming">
+                <h3>NFXXX</h3>
+                <p>Coming Soon</p>
             </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800" alt="Release">
-                <h3>NF002</h3>
-                <p style="color:#888">Artist Name - Track Title</p>
-            </div>
+
         </div>
     </section>
 
