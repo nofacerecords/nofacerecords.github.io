@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Elite Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -50,8 +50,8 @@
         .nav-links a {
             color: #888;
             text-decoration: none;
-            margin-left: 40px;
-            font-size: 0.85rem;
+            margin-left: 25px; /* Tightened for more links */
+            font-size: 0.8rem;
             text-transform: uppercase;
             font-weight: 600;
             transition: 0.4s;
@@ -130,7 +130,6 @@
             gap: 40px;
         }
 
-        /* Release Card Styling */
         .release-link {
             text-decoration: none;
             color: inherit;
@@ -163,19 +162,6 @@
             filter: grayscale(0%);
         }
 
-        .card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .card p {
-            color: #888;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         footer {
             padding: 60px 5%;
             border-top: 1px solid var(--border);
@@ -194,6 +180,7 @@
         <div class="nav-links">
             <a href="/">Label</a>
             <a href="/academy">Academy</a>
+            <a href="/musicindustrymeetups">MIM</a>
             <a href="mailto:demos@nofacerecords.com">Demos</a>
         </div>
     </nav>
@@ -211,7 +198,6 @@
         </div>
         
         <div class="grid">
-            
             <a href="https://fanlink.tv/NFR487" target="_blank" class="release-link">
                 <div class="card">
                     <img src="https://www.dropbox.com/scl/fi/5b6nb5vv5c6nf5y7xhlan/NFR487-IBIZA-2000.jpg?rlkey=6fon6yhip84uho2ozpli09czw&st=6ab48cnp&raw=1" alt="NFR487 Ibiza 2000">
@@ -219,13 +205,6 @@
                     <p>Ibiza 2000</p>
                 </div>
             </a>
-
-            <div class="card" style="opacity: 0.2; border-style: dashed;">
-                <img src="https://via.placeholder.com/800/000/333?text=UPCOMING" alt="Upcoming">
-                <h3>NFXXX</h3>
-                <p>Coming Soon</p>
-            </div>
-
         </div>
     </section>
 
